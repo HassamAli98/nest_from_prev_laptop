@@ -12,7 +12,7 @@ import { LocalStrategy } from './local.auth';
     PassportModule,
     JwtModule.register({
       secret: 'secretKey',
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '2h' },
     }),
     MongooseModule.forFeature([{ name: 'user', schema: UserSchema }]),
   ],

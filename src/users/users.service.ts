@@ -23,6 +23,11 @@ export class UsersService {
   async getUserByUserName(username: string): Promise<User> {
     return await this.userModel.findOne({ username }).exec();
   }
+
+  async getUserById(id: string): Promise<User | null> {
+    return await this.userModel.findById(id).exec();
+  }
+
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.getUser({ username });
     if (!user) return null;
@@ -36,7 +41,7 @@ export class UsersService {
     return null;
   }
   async login(user: any) {
-    const payload = { username: user.username, sub: user._id };
+    const payload = { name: user.username, sub: user._id };
     return {
       access_token: this.jwtService.sign(payload),
     };
